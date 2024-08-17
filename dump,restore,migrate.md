@@ -30,6 +30,13 @@ INSERT INTO users (name, email, created_at) VALUES
 
 ![image](https://github.com/user-attachments/assets/bdab548b-e1f2-4863-983a-90860eb55293)
 
+## Бэкап по расписанию делаем в cron
+
+```crontab -e```
+Каждый день в 2 часа ночи будет делаться бэкап
+
+```0 2 * * * pg_dump -U postgres -h localhost -F c -d mydatabase -f /home/ubuntu/mydatabase.dump$(date +\%Y\%m\%d).dump```
+
 # restore
 Для теста удаляем бд
 
