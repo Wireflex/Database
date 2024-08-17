@@ -33,9 +33,18 @@ INSERT INTO users (name, email, created_at) VALUES
 ## Бэкап по расписанию делаем в cron
 
 ```crontab -e```
+
 Каждый день в 2 часа ночи будет делаться бэкап
 
 ```0 2 * * * pg_dump -U postgres -h localhost -F c -d mydatabase -f /home/ubuntu/mydatabase.dump$(date +\%Y\%m\%d).dump```
+
+Либо через [скрипт](https://github.com/Wireflex/Database/blob/50b9d55a1a34a1b86e7ca3434db4e75021fe20ac/backup_script.sh), который создаём в /etc/cron.daily/
+
+Добавляем права доступа для него
+
+```sudo chmod +x /etc/cron.daily/backup_mydatabase.sh```
+
+в ```crontab -e``` пишем ```0 2 * * * /etc/cron.daily/backup_script.sh```
 
 # restore
 Для теста удаляем бд
