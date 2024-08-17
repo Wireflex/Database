@@ -1,10 +1,12 @@
 # pg_dump
 
 Создём тестовую базу данных
-```
-psql -U postgres -h localhost # (нужно предварительно поменять пароль) с рута su postgres && psql && ALTER USER postgres WITH PASSWORD 'новый_пароль';
-CREATE DATABASE mydatabase;
-```
+```psql -U postgres -h localhost```
+
+Нужно предварительно поменять пароль, с рута ```su postgres && psql && ALTER USER postgres WITH PASSWORD 'новый_пароль';```
+
+```CREATE DATABASE mydatabase;```
+
 Подключаемся к базе данных mydatabase
 ```\c mydatabase```
 
@@ -28,7 +30,7 @@ INSERT INTO users (name, email, created_at) VALUES
 
 ![image](https://github.com/user-attachments/assets/bdab548b-e1f2-4863-983a-90860eb55293)
 
-# pg_restore
+# restore
 Для теста удаляем бд
 
 ``` DROP database mydatabase;```
@@ -50,4 +52,10 @@ INSERT INTO users (name, email, created_at) VALUES
 ![image](https://github.com/user-attachments/assets/2d3fac61-703a-47a0-aaf4-85d546204f1a)
 
 # Migration
+По сути по scp передаём бэкап-файл и там его ресторим о_о О_о о_О О_О
 
+scp /home/ubuntu/mydatabase.dump ubuntu@3.120.248.99:/home/ubuntu/mydatabase.dump
+
+![image](https://github.com/user-attachments/assets/fb960271-7787-4964-a7b3-22fbddd81749)
+
+На 2ом серваке делаем шаг из **restore**
