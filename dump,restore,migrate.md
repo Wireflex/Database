@@ -42,7 +42,7 @@ INSERT INTO users (name, email, created_at) VALUES
 
 Добавляем права доступа для него
 
-```sudo chmod +x /etc/cron.daily/backup_mydatabase.sh```
+```sudo chmod +x /etc/cron.daily/backup_script.sh```
 
 в ```crontab -e``` пишем ```0 2 * * * /etc/cron.daily/backup_script.sh```
 
