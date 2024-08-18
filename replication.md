@@ -51,7 +51,7 @@ host    replication    postgres    192.168.0.70/32    md5 # айпи масте�
 ```
 nano /etc/postgresql/16/main/postgresql.conf
 ```
-listen_addresses = 'localhost, 192.168.0.8' # Внутренний айпи реплики :red_circle:
+listen_addresses = 'localhost, 192.168.0.8' # айпи реплики :red_circle:
 
 wal_level = hot_standby
 
