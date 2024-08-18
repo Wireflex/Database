@@ -73,7 +73,7 @@ hot_standby = on
 ```
 su - postgres
     
-cd /var/lib/postgresql/12/
+cd /var/lib/postgresql/16/
     
 rm -rf main; mkdir main; chmod go-rwx main
 ```
