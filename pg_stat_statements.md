@@ -1,8 +1,12 @@
 ### 1. Запросы в секунду ( QPS )
 ```
-SELECT SUM(calls) FROM pg_stat_statements GROUP BY query
+   SELECT
+       SUM(calls) AS total_calls,
+       SUM(calls) / EXTRACT(EPOCH FROM (now() - pg_postmaster_start_time())) AS qps
+   FROM
+       pg_stat_statements;
 ```
-![image](https://github.com/user-attachments/assets/7ce9e09f-e510-4e1c-aaec-aa3c0d3966e6)
+![image](https://github.com/user-attachments/assets/794cc675-8ee5-4f96-be01-be1f7b91309f)
 
 ### 2. Топ 5 самых частых запросов
 ```
@@ -12,9 +16,18 @@ SELECT query,calls FROM pg_stat_statements ORDER BY calls DESC LIMIT 5;
 
 ### 3. Топ 5 самых долгих запросов
 ```
-SELECT total_exec_time, mean_exec_time FROM pg_stat_statements ORDER BY total_exec_time DESC LIMIT 5;
+SELECT
+    query,
+    calls,
+    total_exec_time,
+    total_exec_time / NULLIF(calls, 0) AS mean_exec_time
+FROM
+    pg_stat_statements
+ORDER BY
+    total_exec_time DESC
+LIMIT 5;
 ```
-![image](https://github.com/user-attachments/assets/5ce68f7d-b8fd-47ab-94b4-560e210ee2ca)
+![image](https://github.com/user-attachments/assets/da74c00b-f04f-4125-94b6-3eed0984c33d)
 
 ### 4. Топ 5 самых тяжелых запросов
 ```
